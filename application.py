@@ -72,12 +72,12 @@ def index():
                           "Comment": custComment}
                 reviews.append(mydict)
             fw.write(str(reviews))
-            fw.close()
+            #fw.close()
             client=pymongo.MongoClient("mongodb+srv://trisharoy_37:Okaybye5@cluster1.yt1sd.mongodb.net/?retryWrites=true&w=majority")
             db = client['review_scrap']
             review_col=db['review_scrap_data']
             review_col.insert_many(reviews)
-            return render_template('result.html', reviews=reviews[0:len(reviews)])
+            return render_template('results.html', reviews=reviews[0:len(reviews)])
         except Exception as e:
             print('The Exception message is: ',e)
             return 'something is wrong'
@@ -87,5 +87,5 @@ def index():
         return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
 	#app.run(debug=True)
